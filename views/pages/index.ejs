@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>[Site Name]: home</title>
+  <meta name="description" content="[Site Description]">
+  <meta name="author" content="[Author]">
+
+  <link rel="stylesheet" href="svgAnimation/css/style.css?v=1.0">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+  <hp-content>
+    <hp-presentation>
+      <hp-slide class="active">
+        <hp-title> Which Shape </hp-title>
+        <hp-chooser>
+            <img src="svgAnimation/images/triangle.svg" />
+            <img src="svgAnimation/images/circle.svg" />
+            <img src="svgAnimation/images/diamond.svg" />
+            <img src="svgAnimation/images/square.svg" />
+
+        </hp-chooser>
+        <hp-title> Doesn't belong? </hp-title>
+      </hp-slide>
+
+      <hp-slide>
+        <hp-title> Which Shape </hp-title>
+        <hp-chooser class="chosen">
+            <img src="svgAnimation/images/triangle.svg" />
+            <img class="chosen" src="svgAnimation/images/circle.svg" />
+            <img src="svgAnimation/images/diamond.svg" />
+            <img src="svgAnimation/images/square.svg" />
+
+        </hp-chooser>
+        <hp-title> Doesn't belong? </hp-title>
+      </hp-slide>
+
+      <hp-slide data-autoadvance="3500">
+        <hp-title> Which Shape </hp-title>
+        <hp-chooser class="chosen">
+            <img src="svgAnimation/images/triangle.svg" />
+            <img class="chosen" src="svgAnimation/images/circle.svg" />
+            <img src="svgAnimation/images/diamond.svg" />
+            <img src="svgAnimation/images/square.svg" />
+
+        </hp-chooser>
+        <hp-title> Doesn't belong? </hp-title>
+      </hp-slide>
+    </hp-presentation>
+  </hp-content>
+  <script src="svgAnimation/js/main.js"></script>
+</body>
+</html>

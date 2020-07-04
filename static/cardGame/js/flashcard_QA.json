@@ -1,0 +1,20 @@
+var flashcard_QA = [
+    {
+        "q": "<h3> What is JSON? </h3>",
+        "a": "<p> Javascript Object Notation</p>",
+        "link": "https://google.com",
+        "category": "javascript"
+    },
+    {
+        "q": "<h3> What is Python? </h3>",
+        "a": "<p> Python</p>",
+        "link": "https://google.com",
+        "category": "python"
+    },
+    {
+        "q": "<h3> What is Swift? </h3>",
+        "a": "<p> Swift </p>",
+        "link": "https://google.com",
+        "category": "swift"
+    }
+]

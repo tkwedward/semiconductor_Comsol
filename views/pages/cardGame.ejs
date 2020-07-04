@@ -1,0 +1,33 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Vanilla Javacript: Propagation and Binding </title>
+  <meta name="description" content="[Site Description]">
+  <meta name="author" content="[Author]">
+
+  <link rel="stylesheet" href="cardGame/css/card.css?v=1.0">
+
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+
+
+
+<body>
+    <section id="game_div"></section>
+    <footer></footer>
+
+</body>
+<script src="cardGame/js/flashcard_QA.json" charset="utf-8"></script>
+<script src="cardGame/js/PromiseChain.js" charset="utf-8"></script>
+<script src="cardGame/js/cardGame.js" charset="utf-8"></script>
+<script type="text/javascript">
+    (function(){
+        var myGame = new Game("game_div", {game: "flashcard", data: flashcard_QA})
+    })()
+</script>
+</html>

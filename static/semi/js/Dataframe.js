@@ -1,15 +1,18 @@
 class DataFrame{
     constructor(data, manager){
         this.data = data
-
-
         this.fileName = data["fileName"]
         this.manager = manager
         this.dataFrameHtmlObject = this.createDataFrameHtmlObject()
+        manager.bookmark.addToBookmark({
+            "titleHtmlObject": this.sectionTitleHtmlObject,
+            "data": data["fileName"]
+        })
     }
 
     createDataFrameHtmlObject(){
         let dataFrameHtmlObject = document.createElement("div")
+
 
         let classFileName = this.fileName.split(" ").join("_")
         // console.log(classFileName);
@@ -18,6 +21,8 @@ class DataFrame{
         // file Name Title
 
         let sectionTitleHtmlObject = document.createElement("h1")
+        this.sectionTitleHtmlObject = sectionTitleHtmlObject
+
         sectionTitleHtmlObject.innerHTML =
         `${this.data["fileName"]}`
         dataFrameHtmlObject.append(sectionTitleHtmlObject)
@@ -30,7 +35,15 @@ class DataFrame{
             dataFrameHtmlObject.append(equationSection.sectionHtmlObject)
         }
 
+
         console.log(this.data);
+        if (this.data["shapeFunction"]){
+            let shapeFunctionSection = new ShapeFunctionSection(this.data)
+            this.shapeFunctionSection = shapeFunctionSection
+
+            dataFrameHtmlObject.append(shapeFunctionSection.sectionHtmlObject)
+        }
+
         if (this.data["weakExpressionDataArray"]){
             let weakExpressionSection = new WeakExpressionSection(this.data)
             this.weakExpressionSection = weakExpressionSection
@@ -75,7 +88,7 @@ class DataFrame{
         }
 
         if (this.equationSection){
-            saveObject["equationArray"] =  this.equationArray
+            saveObject["equationArray"] =  this.data["equationArray"]
         } else {
             saveObject["equationArray"] = []
         }

@@ -21,8 +21,8 @@ module.exports = params =>{
         response.render("pages/semi.ejs")
     })
 
-    router.get("/jsonFile/:fileName", (request, response)=>{
-        let fileName = request.params.fileName + ".json"
+    router.get("/jsonFile/:basePath/:fileName", (request, response)=>{
+        let fileName = request.params.basePath + "/" + request.params.fileName + ".json"
 
         fs.readFile(path.join(__dirname, `../static/semi/data/${fileName}`), 'utf8', (err, json) => {
             let obj = JSON.parse(json);
@@ -32,12 +32,12 @@ module.exports = params =>{
 
     })
 
-    router.post("/semiSaveData", (request, response) => {
+    router.post("/semiSaveData/:basePath", (request, response) => {
 
         let rawData = request.body
-        let fileName = rawData["fileName"] + ".json"
+        let fileName = request.params.basePath + "/" + rawData["fileName"] + ".json"
         let saveJson = JSON.stringify(rawData)
-
+        console.log(fileName);
         fs.writeFileSync(path.join(__dirname, `../static/semi/data/${fileName}`), saveJson, null, 4)// write File
         console.log("success");
         return response

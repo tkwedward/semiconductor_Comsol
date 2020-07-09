@@ -1,0 +1,525 @@
+{
+    "fileName": "Semiconductor",
+    "variableDataArray": [
+        {
+            "name": "semi.min_h",
+            "formula": "nojac(semi.minsemi(sqrt(sqrt(1/emetric2))))",
+            "unit": "m",
+            "meaning": "Minimum element size",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.ngX",
+            "formula": "unX",
+            "unit": "1",
+            "meaning": "Exterior normal vector, X component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.ngY",
+            "formula": "unY",
+            "unit": "1",
+            "meaning": "Exterior normal vector, Y component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.ngZ",
+            "formula": "0",
+            "unit": "1",
+            "meaning": "Exterior normal vector, Z component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.ngX",
+            "formula": "dnX",
+            "unit": "1",
+            "meaning": "Exterior normal vector, X component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.ngY",
+            "formula": "dnY",
+            "unit": "1",
+            "meaning": "Exterior normal vector, Y component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.ngZ",
+            "formula": "0",
+            "unit": "1",
+            "meaning": "Exterior normal vector, Z component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.dngX",
+            "formula": "dnX",
+            "unit": "1",
+            "meaning": "Down normal vector on mesh boundaries, X component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dngY",
+            "formula": "dnY",
+            "unit": "1",
+            "meaning": "Down normal vector on mesh boundaries, Y component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dngZ",
+            "formula": "0",
+            "unit": "1",
+            "meaning": "Down normal vector on mesh boundaries, Z component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.ungX",
+            "formula": "unX",
+            "unit": "1",
+            "meaning": "Up normal vector on mesh boundaries, X component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.ungY",
+            "formula": "unY",
+            "unit": "1",
+            "meaning": "Up normal vector on mesh boundaries, Y component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.ungZ",
+            "formula": "0",
+            "unit": "1",
+            "meaning": "Up normal vector on mesh boundaries, Z component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.rX",
+            "formula": "X",
+            "unit": "m",
+            "meaning": "Position vector, X component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.rY",
+            "formula": "Y",
+            "unit": "m",
+            "meaning": "Position vector, Y component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.rZ",
+            "formula": "0",
+            "unit": "m",
+            "meaning": "Position vector, Z component",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dc_down",
+            "formula": "down(semi.rX-circumcenter(semi.rX[1/m])[m])*semi.dngX+down(semi.rY-circumcenter(semi.rY[1/m])[m])*semi.dngY+down(semi.rZ-circumcenter(semi.rZ[1/m])[m])*semi.dngZ",
+            "unit": "m",
+            "meaning": "Local boundary mesh distance, downside element",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dc_up",
+            "formula": "up(semi.rX-circumcenter(semi.rX[1/m])[m])*semi.ungX+up(semi.rY-circumcenter(semi.rY[1/m])[m])*semi.ungY+up(semi.rZ-circumcenter(semi.rZ[1/m])[m])*semi.ungZ",
+            "unit": "m",
+            "meaning": "Local boundary mesh distance, upside element",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.global_flux_tol_cd",
+            "formula": "1.0E-4",
+            "unit": "1",
+            "meaning": "Global tolerance for finite volume fluxes (variable is replaced in subsequent semiconductor material model or charge conservation features)",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dc_tol",
+            "formula": "semi.min_h*semi.global_flux_tol_cd",
+            "unit": "m",
+            "meaning": "Local boundary mesh distance tolerance",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dc_n",
+            "formula": "if(abs(semi.dc_n_bnd)<semi.dc_tol,if(sign(semi.dc_n_bnd)==0,semi.dc_tol,sign(semi.dc_n_bnd)*semi.dc_tol),semi.dc_n_bnd)",
+            "unit": "m",
+            "meaning": "Local exterior boundary distance at domain edge, (numerical)",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.dc_n_bnd",
+            "formula": "up(semi.rX-circumcenter(semi.rX[1/m])[m])*semi.ngX+up(semi.rY-circumcenter(semi.rY[1/m])[m])*semi.ngY+up(semi.rZ-circumcenter(semi.rZ[1/m])[m])*semi.ngZ",
+            "unit": "m",
+            "meaning": "Local exterior boundary distance at domain edge",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.dc_n_bnd",
+            "formula": "down(semi.rX-circumcenter(semi.rX[1/m])[m])*semi.ngX+down(semi.rY-circumcenter(semi.rY[1/m])[m])*semi.ngY+down(semi.rZ-circumcenter(semi.rZ[1/m])[m])*semi.ngZ",
+            "unit": "m",
+            "meaning": "Local exterior boundary distance at domain edge",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.dc_down_bnd",
+            "formula": "if(abs(semi.dc_down)<semi.dc_tol,if(sign(semi.dc_down)==0,semi.dc_tol,sign(semi.dc_down)*semi.dc_tol),semi.dc_down)",
+            "unit": "m",
+            "meaning": "Local boundary mesh distance, downside element (used on boundaries)",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dc_up_bnd",
+            "formula": "if(abs(semi.dc_up)<semi.dc_tol,if(sign(semi.dc_up)==0,semi.dc_tol,sign(semi.dc_up)*semi.dc_tol),semi.dc_up)",
+            "unit": "m",
+            "meaning": "Local boundary mesh distance, upside element (used on boundaries)",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.dc_tot",
+            "formula": "if(abs(semi.dc_down+semi.dc_up)<semi.dc_tol,if(sign(semi.dc_down+semi.dc_up)==0,semi.dc_tol,sign(semi.dc_down+semi.dc_up)*semi.dc_tol),semi.dc_down+semi.dc_up)",
+            "unit": "m",
+            "meaning": "Distance between circumcenters at interior boundary, (numerical)",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.delta_eta_tol",
+            "formula": "1.0E-9",
+            "unit": "1",
+            "meaning": "Tolerance for optimal average Gn Gp value",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.epsilonr_down",
+            "formula": "down(semi.epsilonrs)",
+            "unit": "1",
+            "meaning": "Equivalent relative permittivity, downside",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.epsilonr_up",
+            "formula": "up(semi.epsilonrs)",
+            "unit": "1",
+            "meaning": "Equivalent relative permittivity, upside",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.E_cd_denom",
+            "formula": "semi.epsilonr_down*semi.dc_up+semi.epsilonr_up*semi.dc_down",
+            "unit": "m",
+            "meaning": "Denominator for centered difference scheme",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.E_cd_denom_num",
+            "formula": "if(abs(semi.E_cd_denom)<semi.dc_tol,if(sign(semi.E_cd_denom)==0,semi.dc_tol,sign(semi.E_cd_denom)*semi.dc_tol),semi.E_cd_denom)",
+            "unit": "m",
+            "meaning": "Numerical denominator for centered difference scheme",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.Dcd",
+            "formula": "epsilon0_const*semi.epsilonr_down*semi.epsilonr_up*(down(V)-up(V))/semi.E_cd_denom_num",
+            "unit": "C/m²",
+            "meaning": "Normal component of the electric displacement field",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.E_down",
+            "formula": "semi.Dcd/(epsilon0_const*semi.epsilonr_down)",
+            "unit": "V/m",
+            "meaning": "Normal component of the electric field in the down direction",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.E_up",
+            "formula": "semi.Dcd/(epsilon0_const*semi.epsilonr_up)",
+            "unit": "V/m",
+            "meaning": "Normal component of the electric field in the up direction",
+            "scope": "Global"
+        },
+        {
+            "name": "semi.D_bnd_down",
+            "formula": "epsilon0_const*semi.epsilonr_down*(down(V)-semi.nV)/semi.dc_down_bnd",
+            "unit": "C/m²",
+            "meaning": "Normal component of the electric displacement field in the down direction",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.D_bnd_up",
+            "formula": "epsilon0_const*semi.epsilonr_up*(up(V)-semi.nV)/semi.dc_up_bnd",
+            "unit": "C/m²",
+            "meaning": "Normal component of the electric displacement field in the up direction",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.EX",
+            "formula": "semi.DX/(semi.epsilonrs*epsilon0_const)",
+            "unit": "V/m",
+            "meaning": "Electric field, X component",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.EY",
+            "formula": "semi.DY/(semi.epsilonrs*epsilon0_const)",
+            "unit": "V/m",
+            "meaning": "Electric field, Y component",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.EZ",
+            "formula": "0",
+            "unit": "V/m",
+            "meaning": "Electric field, Z component",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.T0",
+            "formula": "293.15[K]",
+            "unit": "K",
+            "meaning": "Reference temperature for energy levels",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.epsilonrs",
+            "formula": "(semi.epsilonrXX+semi.epsilonrYY+semi.epsilonrZZ)/3",
+            "unit": "1",
+            "meaning": "Relative permittivity, scalar",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.rho",
+            "formula": "0",
+            "unit": "C/m³",
+            "meaning": "Space charge density"
+        },
+        {
+            "name": "semi.rho_s",
+            "formula": "0",
+            "unit": "C/m²",
+            "meaning": "Surface charge density"
+        },
+        {
+            "name": "semi.d",
+            "formula": "1.0E-6[m]",
+            "unit": "m",
+            "meaning": "Out-of-plane thickness",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.gamma_n",
+            "formula": "1",
+            "unit": "1",
+            "meaning": "Electron degeneracy factor",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.gamma_p",
+            "formula": "1",
+            "unit": "1",
+            "meaning": "Hole degeneracy factor",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.Gn",
+            "formula": "1",
+            "unit": "1",
+            "meaning": "Electron degeneracy function",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.Gp",
+            "formula": "1",
+            "unit": "1",
+            "meaning": "Hole degeneracy function",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.Qthn",
+            "formula": "2*semi.Vth*semi.mun",
+            "unit": "m²/s",
+            "meaning": "Electron non-equilibrium contribution to the thermal diffusion coefficient",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.Qthp",
+            "formula": "2*semi.Vth*semi.mup",
+            "unit": "m²/s",
+            "meaning": "Hole non-equilibrium contribution to the thermal diffusion coefficient",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.cp",
+            "formula": "1",
+            "unit": "1",
+            "meaning": "Interface continuation parameter",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.cp_dtd",
+            "formula": "1",
+            "unit": "1",
+            "meaning": "Doping and trap density continuation parameter",
+            "scope": "Domain 2"
+        },
+        {
+            "name": "semi.nX",
+            "formula": "unX",
+            "unit": "",
+            "meaning": "Normal vector, X component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.nY",
+            "formula": "unY",
+            "unit": "",
+            "meaning": "Normal vector, Y component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.nZ",
+            "formula": "0",
+            "unit": "",
+            "meaning": "Normal vector, Z component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.nX",
+            "formula": "dnX",
+            "unit": "",
+            "meaning": "Normal vector, X component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.nY",
+            "formula": "dnY",
+            "unit": "",
+            "meaning": "Normal vector, Y component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.nZ",
+            "formula": "0",
+            "unit": "",
+            "meaning": "Normal vector, Z component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.nmeshX",
+            "formula": "unXmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, X component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.nmeshY",
+            "formula": "unYmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, Y component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.nmeshZ",
+            "formula": "0",
+            "unit": "",
+            "meaning": "Mesh normal vector, Z component",
+            "scope": "Boundary 10"
+        },
+        {
+            "name": "semi.nmeshX",
+            "formula": "dnXmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, X component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.nmeshY",
+            "formula": "dnYmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, Y component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.nmeshZ",
+            "formula": "0",
+            "unit": "",
+            "meaning": "Mesh normal vector, Z component",
+            "scope": "Boundaries 3–5, 7, 12"
+        },
+        {
+            "name": "semi.unmeshX",
+            "formula": "unXmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, upside, X component",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.unmeshY",
+            "formula": "unYmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, upside, Y component",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.unmeshZ",
+            "formula": "0",
+            "unit": "",
+            "meaning": "Mesh normal vector, upside, Z component",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.dnmeshX",
+            "formula": "dnXmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, downside, X component",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.dnmeshY",
+            "formula": "dnYmesh",
+            "unit": "",
+            "meaning": "Mesh normal vector, downside, Y component",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.dnmeshZ",
+            "formula": "0",
+            "unit": "",
+            "meaning": "Mesh normal vector, downside, Z component",
+            "scope": "Boundaries 3–5, 7, 10, 12"
+        },
+        {
+            "name": "semi.Vref",
+            "formula": "semi.Vref_local",
+            "unit": "V",
+            "meaning": "Reference potential",
+            "scope": "Point 2"
+        },
+        {
+            "name": "semi.Vref_global",
+            "formula": "semi.intsemi(semi.Vref)",
+            "unit": "V",
+            "meaning": "Reference potential, global",
+            "scope": "Global"
+        }
+    ],
+    "weakExpressionDataArray": [
+        {
+            "weakExpression": "semi.Dcd*test(down(V)-up(V))*semi.d",
+            "integrationOrder": "0",
+            "frame": "Material",
+            "selection": "Mesh boundaries on domain 2"
+        },
+        {
+            "weakExpression": "-test(V)*semi.rho*semi.d",
+            "integrationOrder": "0",
+            "frame": "Material",
+            "selection": "Domain 2"
+        }
+    ],
+    "shapeFunction": [],
+    "equationArray": [
+        { "name":"", "path":"equ_semi.png"}
+    ]
+}

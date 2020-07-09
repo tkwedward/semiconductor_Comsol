@@ -19,6 +19,8 @@ class Section {
         return sectionHtmlObject
     }
 
+
+
     save(){
         let lineDataArray = this.lineArray.map(p=>p.save())
         return lineDataArray
@@ -55,15 +57,11 @@ class VariableSection extends Section{
         })
     }
 
-
-
 }
-
 
 class WeakExpressionSection extends Section {
     constructor (data){
         super()
-        console.log(data);
         this.type = "weakExpression"
         this.data = data
         this.sectionHtmlObject = this.createSection()
@@ -73,7 +71,6 @@ class WeakExpressionSection extends Section {
     createSection(){
         let dataContainerHtmlObject = document.createElement("div")
         dataContainerHtmlObject.classList.add("WeakExpressionSection")
-        console.log(this.data);
 
         let titleHtmlObject = document.createElement("h3")
         titleHtmlObject.classList.add("title")
@@ -81,7 +78,35 @@ class WeakExpressionSection extends Section {
         dataContainerHtmlObject.append(titleHtmlObject)
 
         this.data["weakExpressionDataArray"].forEach((p, i)=>{
-            let newLine = new WeakExpressionSectionLine(p, i)
+            let newLine = new WeakExpressionSectionLine(p, i, this)
+            this.lineArray.push(newLine)
+            dataContainerHtmlObject.append(newLine.lineHtmlObject)
+        })
+
+        return dataContainerHtmlObject
+    }
+}
+
+class ShapeFunctionSection extends Section {
+    constructor (data){
+        super()
+        this.type = "shapeFunction"
+        this.data = data
+        this.sectionHtmlObject = this.createSection()
+
+    }
+
+    createSection(){
+        let dataContainerHtmlObject = document.createElement("div")
+        dataContainerHtmlObject.classList.add("ShapeFunction")
+
+        let titleHtmlObject = document.createElement("h3")
+        titleHtmlObject.classList.add("title")
+        titleHtmlObject.innerHTML = `${this.data["fileName"]} ShapeFunction`
+        dataContainerHtmlObject.append(titleHtmlObject)
+
+        this.data["shapeFunction"].forEach((p, i)=>{
+            let newLine = new ShapeFunctionSectionLine(p, i, this)
             this.lineArray.push(newLine)
             dataContainerHtmlObject.append(newLine.lineHtmlObject)
         })
@@ -109,6 +134,7 @@ class EquationSection {
             let img = document.createElement("img")
             img.src = "/semi/img/" + p["path"]
             img.style.display = "block"
+            img.style.margin = "20px";
             img.style.height = "40px"
             equationSection.append(img)
         })

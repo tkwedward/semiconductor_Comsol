@@ -8,13 +8,18 @@
     </head>
 
     <body>
+        <div class="overallWrapper"></div>
+
     </body>
 
     <style>
         body{
             position: absolute;
+            overflow: hidden;
             left: 0;
             top: 0;
+            width: 99vw;
+            height: 100vh;
         }
 
         .item{
@@ -25,8 +30,21 @@
             margin: 10px;
         }
 
-    </style>
+        .overallWrapper{
+            width: 100vw;
+            display: grid;
+            grid-template-columns: 12% 88%;
+        }
 
+        .dataWrapper{
+            overflow-y: scroll;
+            overflow-x: hidden;
+            height: 100vh;
+        }
+
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" charset="utf-8"></script>
+    <script src="/semi/js/Bookmark.js" charset="utf-8"></script>
     <script src="/semi/js/SectionLine.js" charset="utf-8"></script>
     <script src="/semi/js/Section.js" charset="utf-8"></script>
     <script src="/semi/js/Dataframe.js" charset="utf-8"></script>
